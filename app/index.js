@@ -42,13 +42,13 @@ module.exports = yeoman.generators.Base.extend({
       name: 'features',
       message: 'What more would you like?',
       choices: [{
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
+        name: 'jQuery',
+        value: 'includejQuery',
         checked: true
       },{
         name: 'Sass',
         value: 'includeSass',
-        checked: false
+        checked: true
       },{
         name: 'Modernizr',
         value: 'includeModernizr',
@@ -57,14 +57,13 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       when: function (answers) {
         return answers && answers.features &&
-          answers.features.indexOf('includeSass') !== -1;
+          answers.features.indexOf('includejQuery') !== -1;
       },
       type: 'confirm',
-      name: 'libsass',
-      value: 'includeLibSass',
-      message: 'Would you like to use libsass? Read up more at \n' +
-        chalk.green('https://github.com/andrew/node-sass#node-sass'),
-      default: false
+      name: 'jQuery2',
+      value: 'includejQuery2',
+      message: 'Would you like to use' + chalk.green('jQuery 2') + '?',
+      default: true
     }];
 
     this.prompt(prompts, function (answers) {
@@ -75,11 +74,10 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       this.includeSass = hasFeature('includeSass');
-      this.includeBootstrap = hasFeature('includeBootstrap');
+      this.includejQuery = hasFeature('includejQuery');
       this.includeModernizr = hasFeature('includeModernizr');
 
-      this.includeLibSass = answers.libsass;
-      this.includeRubySass = !answers.libsass;
+      this.includejQuery2 = answers.includejQuery2;
 
       done();
     }.bind(this));
@@ -105,11 +103,12 @@ module.exports = yeoman.generators.Base.extend({
       dependencies: {}
     };
 
-    if (this.includeBootstrap) {
-      var bs = 'bootstrap' + (this.includeSass ? '-sass-official' : '');
-      bower.dependencies[bs] = '~3.2.0';
-    } else {
-      bower.dependencies.jquery = '~1.11.1';
+    if (this.includejQuery) {
+      if (this.includejQuery2) {
+        bower.dependencies.jquery = '~2.1.3';
+      } else {
+        bower.dependencies.jquery = '~1.11.2';
+      }
     }
 
     if (this.includeModernizr) {
@@ -138,32 +137,6 @@ module.exports = yeoman.generators.Base.extend({
       this.readFileAsString(join(this.sourceRoot(), 'index.html')),
       this
     );
-
-    // wire Bootstrap plugins
-    if (this.includeBootstrap && !this.includeSass) {
-      var bs = 'bower_components/bootstrap/js/';
-
-      this.indexFile = this.appendFiles({
-        html: this.indexFile,
-        fileType: 'js',
-        optimizedPath: 'scripts/plugins.js',
-        sourceFileList: [
-          bs + 'affix.js',
-          bs + 'alert.js',
-          bs + 'dropdown.js',
-          bs + 'tooltip.js',
-          bs + 'modal.js',
-          bs + 'transition.js',
-          bs + 'button.js',
-          bs + 'popover.js',
-          bs + 'carousel.js',
-          bs + 'scrollspy.js',
-          bs + 'collapse.js',
-          bs + 'tab.js'
-        ],
-        searchPath: '.'
-      });
-    }
 
     this.indexFile = this.appendFiles({
       html: this.indexFile,

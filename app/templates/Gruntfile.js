@@ -193,7 +193,7 @@ module.exports = function (grunt) {
 
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
-      options: {<% if (includeLibSass) { %>
+      options: {<% if (includeSass) { %>
         sourceMap: true,
         includePaths: ['bower_components']
         <% } else { %>
