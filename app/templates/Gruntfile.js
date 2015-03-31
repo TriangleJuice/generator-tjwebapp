@@ -242,9 +242,7 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         ignorePath: /^<%= config.app %>\/|\.\.\//,
-        src: ['<%%= config.app %>/index.html']<% if (includeBootstrap) { %>,<% if (includeSass) { %>
-        exclude: ['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js']<% } else { %>
-        exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']<% } } %>
+        src: ['<%%= config.app %>/index.html']
       }<% if (includeSass) { %>,
       sass: {
         src: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
@@ -374,21 +372,7 @@ module.exports = function (grunt) {
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*'
           ]
-        }<% if (includeBootstrap) { %>, {
-          expand: true,
-          dot: true,
-          cwd: '<% if (includeSass) {
-              %>.<%
-            } else {
-              %>bower_components/bootstrap/dist<%
-            } %>',
-          src: '<% if (includeSass) {
-              %>bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*<%
-            } else {
-              %>fonts/*<%
-            } %>',
-          dest: '<%%= config.dist %>'
-        }<% } %>]
+        }]
       }<% if (!includeSass) { %>,
       styles: {
         expand: true,

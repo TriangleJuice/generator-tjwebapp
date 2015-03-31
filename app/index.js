@@ -32,7 +32,7 @@ module.exports = yeoman.generators.Base.extend({
     if (!this.options['skip-welcome-message']) {
       this.log(require('yosay')());
       this.log(chalk.magenta(
-        'Out of the box I include HTML5 Boilerplate, jQuery, and a ' +
+        'Out of the box I include HTML5 Boilerplate and a ' +
         'Gruntfile.js to build your app.'
       ));
     }
@@ -62,7 +62,7 @@ module.exports = yeoman.generators.Base.extend({
       type: 'confirm',
       name: 'jQuery2',
       value: 'includejQuery2',
-      message: 'Would you like to use' + chalk.green('jQuery 2') + '?',
+      message: 'Would you like to use ' + chalk.green('jQuery 2') + '?',
       default: true
     }];
 

@@ -116,40 +116,6 @@ describe('Webapp generator', function () {
       });
     });
 
-    it('creates expected bootstrap components', function (done) {
-      runGen.withOptions(options).withPrompt({features: ['includeBootstrap']})
-      .on('end', function () {
-
-        assert.fileContent([
-          ['Gruntfile.js', /bootstrap/],
-          ['app/index.html', /bootstrap/],
-          ['bower.json', /bootstrap/]
-        ]);
-
-        done();
-      });
-    });
-
-    it('creates expected ruby SASS components', function (done) {
-      runGen.withOptions(options).withPrompt({features: ['includeSass']})
-      .on('end', function () {
-
-        assert.fileContent([
-          ['Gruntfile.js', /sass/],
-          ['app/index.html', /Sass/],
-          ['.gitignore', /\.sass-cache/],
-          ['package.json', /grunt-contrib-sass/]
-        ]);
-
-        assert.noFileContent([
-          ['package.json', /grunt-sass/],
-          ['app/index.html', /Sass is a mature/]
-        ]);
-
-        done();
-      });
-    });
-
     it('creates expected node SASS files', function (done) {
       runGen.withOptions(options).withPrompt({
         features: ['includeSass'],
@@ -163,21 +129,6 @@ describe('Webapp generator', function () {
         assert.noFileContent([
           ['package.json', /grunt-contrib-sass/],
           ['Gruntfile.js', /bootstrap-sass-official/]
-        ]);
-
-        done();
-      });
-    });
-
-    it('creates expected SASS and Bootstrap components', function (done) {
-      runGen.withOptions(options).withPrompt({
-        features: ['includeSass', 'includeBootstrap']
-      }).on('end', function () {
-
-        assert.fileContent([
-          ['Gruntfile.js', /bootstrap-sass-official/],
-          ['app/index.html', /Sass is a mature/],
-          ['bower.json', /bootstrap-sass-official/]
         ]);
 
         done();
