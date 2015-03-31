@@ -60,7 +60,7 @@ module.exports = yeoman.generators.Base.extend({
           answers.features.indexOf('includejQuery') !== -1;
       },
       type: 'confirm',
-      name: 'jQuery2',
+      name: 'jquery2',
       value: 'includejQuery2',
       message: 'Would you like to use ' + chalk.green('jQuery 2') + '?',
       default: true
@@ -77,7 +77,12 @@ module.exports = yeoman.generators.Base.extend({
       this.includejQuery = hasFeature('includejQuery');
       this.includeModernizr = hasFeature('includeModernizr');
 
-      this.includejQuery2 = answers.includejQuery2;
+      this.includejQuery2 = answers.jquery2;
+
+
+      // this.log(this.includejQuery);
+      // this.log(this.includejQuery2);
+      // this.log(answers);
 
       done();
     }.bind(this));
