@@ -1,9 +1,9 @@
 {
-  "name": "trianglejuice-webapp",
+  "name": "generator-tjwebapp",
   "version": "0.1.0",
   "description": "Scaffold out a front-end web app, TriangleJuice style",
   "license": "BSD",
-  "repository": "yeoman/trianglejuice-webapp",
+  "repository": "TriangleJuice/generator-tjwebapp",
   "author": "TriangleJuice",
   "main": "app/index.js",
   "scripts": {
