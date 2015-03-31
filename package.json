@@ -1,10 +1,10 @@
 {
-  "name": "generator-webapp",
-  "version": "0.5.1",
-  "description": "Scaffold out a front-end web app",
+  "name": "trianglejuice-webapp",
+  "version": "0.1.0",
+  "description": "Scaffold out a front-end web app, TriangleJuice style",
   "license": "BSD",
-  "repository": "yeoman/generator-webapp",
-  "author": "Yeoman",
+  "repository": "yeoman/trianglejuice-webapp",
+  "author": "TriangleJuice",
   "main": "app/index.js",
   "scripts": {
     "test": "mocha --reporter spec"
