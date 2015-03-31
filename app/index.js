@@ -79,11 +79,6 @@ module.exports = yeoman.generators.Base.extend({
 
       this.includejQuery2 = answers.jquery2;
 
-
-      // this.log(this.includejQuery);
-      // this.log(this.includejQuery2);
-      // this.log(answers);
-
       done();
     }.bind(this));
   },
